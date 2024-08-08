@@ -50,6 +50,10 @@ builder.Services.AddScoped<IAttachmentService, AttachmentService>();
 builder.Services.AddScoped<IAdminDashboard, AdminDashboard>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 
+
+var logFilePath = Path.Combine(builder.Environment.ContentRootPath, "Logs", "error.log");
+builder.Services.AddSingleton(new FileLoggerService(logFilePath));
+
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();

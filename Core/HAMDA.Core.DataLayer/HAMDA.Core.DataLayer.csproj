@@ -18,7 +18,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Models\EntityModels\HAMDA.Models.EntityModels.csproj" />
     <ProjectReference Include="..\HAMDA.Core.SystemCore\HAMDA.Core.SystemCore.csproj" />
-    <ProjectReference Include="..\HAMDA.Models.SystemCore\HAMDA.Core.SystemCore.csproj" />
   </ItemGroup>
 
 </Project>

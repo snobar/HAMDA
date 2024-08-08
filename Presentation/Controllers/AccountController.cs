@@ -21,6 +21,7 @@ namespace HAMDA.Controllers
 
         public IActionResult Login()
         {
+            throw new NotImplementedException();
             return View(new HAMDA.Models.ViewModels.LoginModel());
         }
 
