@@ -4,6 +4,8 @@
 
 
 body {
+    overflow: unset !important;
+
     .nav {
         .buttons-group {
             display: flex;

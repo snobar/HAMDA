@@ -32,9 +32,7 @@ namespace HAMDA.Service.Service
             var returnedResponse = await _context.Costumers.AddAsync(EntityModel);
 
             if (await _context.SaveChangesAsync() > 0)
-            {
-                bool attachmentsSaved = await _attachmentService.SaveAttachmentsAsync(EntityModel.Id,1,Model.Attachments);
-
+            {                
                 var htmlMessage = new StringBuilder();
                 htmlMessage.Append($"<h3>Dear {Model.Username},</h3><br>");
                 htmlMessage.Append($"<p>Thank you for getting in touch. We will reach out to you shortly.</p><br>");

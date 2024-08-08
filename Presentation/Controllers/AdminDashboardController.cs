@@ -1,5 +1,6 @@
 ﻿using HAMDA.Core.Extentions;
 using HAMDA.Models.EntityModels.Enum;
+using HAMDA.Models.ViewModels;
 using HAMDA.Repository.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -51,13 +52,17 @@ namespace HAMDA.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> MakeAction(long Id, int Status)
+        public async Task<IActionResult> MakeAction(UpdateCostumerModel model)
         {
-            var response = await _adminDashboard.MakeAction(Id, Status,CurrentUser.UserId);
-            if (response)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Details",new { Id });
+                var response = await _adminDashboard.MakeAction(model, CurrentUser.UserId);
+                if (response)
+                {
+                    return RedirectToAction("Details", new { Id = model.Id });
+                }
             }
+            TempData["FailedMessage1"] = "Something went wrong! Please try again.";
             return RedirectToAction("Index");
         }
     }

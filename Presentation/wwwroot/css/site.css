@@ -11894,6 +11894,9 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+body {
+  overflow: unset !important;
+}
 body .nav .buttons-group {
   display: flex;
   align-items: center;

@@ -1,4 +1,6 @@
 ﻿
+using System.IO.Compression;
+
 namespace HAMDA.Models.ViewModels
 {
     public class Attachment

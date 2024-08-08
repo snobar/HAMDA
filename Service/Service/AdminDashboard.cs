@@ -63,7 +63,7 @@ namespace HAMDA.Service.Service
                 }
             }
 
-            
+
             return new AdminDashboardModel();
         }
 
@@ -72,7 +72,7 @@ namespace HAMDA.Service.Service
         public async Task<AdminDashboarditems> Details(int Id)
         {
             var lstAttachments = await _attachmentService.GetAttachmentsAsync(Id, 1);
-            var costumer = await _context.Costumers.Where(x => x.Id == Id).Select(x =>  
+            var costumer = await _context.Costumers.Where(x => x.Id == Id).Select(x =>
             new AdminDashboarditems
             {
                 Id = x.Id,
@@ -89,20 +89,33 @@ namespace HAMDA.Service.Service
             {
                 return costumer;
             }
-            
+
             return null;
         }
 
 
-        public async Task<bool> MakeAction(long Id, int Status,Guid UserId)
+        public async Task<bool> MakeAction(UpdateCostumerModel model, Guid UserId)
         {
-            var costumer = await _context.Costumers.Where(x => x.Id == Id).FirstOrDefaultAsync();
+            var costumer = await _context.Costumers.Where(x => x.Id == model.Id).FirstOrDefaultAsync();
             if (costumer.IsNotNullOrEmpty())
             {
                 costumer.ModifiedById = UserId;
-                costumer.Status = Status;
+                costumer.Status = model.Status;
                 _context.Costumers.Update(costumer);
-                return await _context.SaveChangesAsync() > 0;
+
+                var attachmentsSaved = true;
+
+                if (model.Status == 2)
+                {
+                    attachmentsSaved = await _attachmentService.SaveAttachmentsAsync(model.Id, 1, model.SaveAttachments);
+                }
+
+
+                if (attachmentsSaved)
+                {
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
             }
             return false;
 

@@ -17,11 +17,6 @@ namespace HAMDA.Models.ViewModels
 
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress(ErrorMessage = "Invalid email address format")]
-        public string Email { get; set; }
-
-        [Required(ErrorMessage = "You must upload at least one image.")]
-        [MaxLength(10, ErrorMessage = "You can upload up to 10 images.")]
-        [Display(Name = "Payment Images")]
-        public List<IFormFile> Attachments { get; set; }
+        public string Email { get; set; }        
     }
 }

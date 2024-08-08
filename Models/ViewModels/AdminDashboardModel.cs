@@ -1,4 +1,7 @@
-﻿namespace HAMDA.Models.ViewModels
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
+
+namespace HAMDA.Models.ViewModels
 {
     public class AdminDashboardModel
     {

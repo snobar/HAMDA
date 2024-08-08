@@ -8,6 +8,6 @@ namespace HAMDA.Repository.IService
 
         Task<AdminDashboarditems> Details(int Id);
 
-        Task<bool> MakeAction(long Id, int Status,Guid UserId);
+        Task<bool> MakeAction(UpdateCostumerModel model, Guid UserId);
     }
 }

@@ -69,10 +69,10 @@
             @Html.TextBoxFor(m => m.Email, new { @id = "email", @required = "required", @type = "email" })
             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
 
-            @Html.LabelFor(m => m.Attachments,"Payment Images", new { data_i18n = "attachments" })
+@*             @Html.LabelFor(m => m.Attachments,"Payment Images", new { data_i18n = "attachments" })
             <input type="file" name="Attachments" id="attachments" multiple class="form-control" accept="image/*" />
             <small class="form-text text-muted" data-i18n="attachmentsValidation">You can upload up to 10 images.</small>
-            @Html.ValidationMessageFor(m => m.Attachments, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(m => m.Attachments, "", new { @class = "text-danger" }) *@
 
             <button type="submit" data-i18n="submit">Continue</button>
         }

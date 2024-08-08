@@ -4,6 +4,7 @@ using HAMDA.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HAMDA.Core.DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240808164308_Attachment1")]
+    partial class Attachment1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -226,14 +229,14 @@ namespace HAMDA.Core.DataLayer.Migrations
                         {
                             Id = "20dcdd1d-134c-4ce7-ba60-63aaa7535590",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5250bf48-8d04-4fad-9f25-5c231ba5d6cc",
+                            ConcurrencyStamp = "23065e18-3dee-413f-ae1c-65c5bd50bbc7",
                             Email = "Admin@hamda.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "Admin@hamda.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPkTIuEco1Bk2uZSa78Gp+82zNJA5MC3+zgF/Y6qHnuRrqFaVbFU/ksBSKVCCa2d8w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDepnKtDmohgyaT4UFwRoBA/UkqboGo7M7DXqrWvEwoN03xtvqJuIuOkHrWUDahvwg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d8f47101-33ca-4c34-9d75-54fe8acab12a",
+                            SecurityStamp = "e1789f3b-cced-4e3f-8ae1-bf5e8a24a036",
                             TwoFactorEnabled = false,
                             UserName = "Admin@hamda.com"
                         });

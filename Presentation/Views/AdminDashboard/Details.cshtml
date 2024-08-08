@@ -15,9 +15,13 @@
                     <p class="card-text"><strong data-i18n="email">Email:</strong> @Model.Email</p>
                     @if (Model.CurrentStatus == 3)
                     {
-                        <form asp-action="MakeAction" asp-controller="AdminDashboard" asp-route-Id="@Model.Id" method="post" id="frmMakeAction" class="d-none">
+                        <form asp-action="MakeAction" asp-controller="AdminDashboard" asp-route-Id="@Model.Id" enctype="multipart/form-data" method="post" id="frmMakeAction">
                             @Html.HiddenFor(Model=>Model.Id)
-                            @Html.Hidden("Status","")                            
+                            @Html.Hidden("Status","")
+                            @Html.Label("SaveAttachments", "Payment Images", new { data_i18n = "attachments" })
+                            <input type="file" name="SaveAttachments" id="SaveAttachments" multiple class="form-control" accept="image/*" />
+                            <small class="form-text text-muted" data-i18n="attachmentsValidation">You can upload up to 10 images.</small>
+                            @Html.ValidationMessage("SaveAttachments", "", new { @class = "text-danger" })
                         </form>
 
                         <button data-i18n="approve" type="submit" class="btn btn-primary" onclick="makeActions(1)">

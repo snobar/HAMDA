@@ -8,6 +8,6 @@ namespace HAMDA.Models.EntityModels.System
         public int CategoryId { get; set; }
         public string FileName { get; set; }
         public string MimeType { get; set; }
-        public string Content { get; set; }
+        public Guid FileId { get; set; }
     }
 }
