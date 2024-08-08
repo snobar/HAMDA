@@ -1,0 +1,90 @@
+﻿@model AdminDashboarditems
+
+<div class="page-container details-container container">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-header d-flex">
+            <h3 data-i18n="details"></h3><h3>&nbsp;- @Model.Username</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <h5 data-i18n="personalInformation" class="card-title">Personal Information</h5>
+                    <p class="card-text"><strong data-i18n="username">Country:</strong> @Model.Country</p>
+                    <p class="card-text"><strong data-i18n="phone">Phone:</strong> @Model.Phone</p>
+                    <p class="card-text"><strong data-i18n="email">Email:</strong> @Model.Email</p>
+                    @if (Model.CurrentStatus == 3)
+                    {
+                        <form asp-action="MakeAction" asp-controller="AdminDashboard" asp-route-Id="@Model.Id" method="post" id="frmMakeAction" class="d-none">
+                            @Html.HiddenFor(Model=>Model.Id)
+                            @Html.Hidden("Status","")                            
+                        </form>
+
+                        <button data-i18n="approve" type="submit" class="btn btn-primary" onclick="makeActions(1)">
+                            Approve
+                        </button>
+
+                        <button data-i18n="delete" type="submit" class="btn btn-danger mt-2" onclick="makeActions(2)">
+                            Delete
+                        </button>
+
+                        <script>
+                            function makeActions(status){
+                                var confirmation = confirm("Are you sure you want to perform this action?");
+
+                                if (confirmation) {
+                                    // Get the hidden input element for the status
+                                    var statusInput = document.querySelector('#frmMakeAction input[name="Status"]');
+
+                                    // Set the value of the hidden input to the passed status
+                                    statusInput.value = status;
+
+                                    // Submit the form
+                                    var _form = document.getElementById("frmMakeAction");
+                                    _form.submit();
+                                }
+                            }
+                        </script>
+                    }
+                    
+                </div>
+                <div class="col-md-6">
+                    <h5 data-i18n="attachments" class="card-title">Attachments</h5>
+                    <p class="card-text"><strong data-i18n="paymentsCount">Total Attachments:</strong> @Model.AttachmentsCount</p>
+                    @if (Model.Attachments.IsNotNullOrEmpty())
+                    {
+                        <ul class="list-group list-group-flush">
+                            @foreach (var attachment in Model.Attachments)
+                            {
+                                <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        @* Display image thumbnail if MimeType is an image *@
+                                        @if (attachment.MimeType.StartsWith("image/"))
+                                        {
+                                            <img src="data:@attachment.MimeType;base64,@attachment.Content"
+                                                 alt="@attachment.FileName"
+                                                 class="img-thumbnail"
+                                                 loading="lazy"
+                                                 style="max-width: 200px; max-height: 200px;" />
+                                        }
+                                    </div>
+                                    <a data-i18n="download" href="@Url.Action("Download", "Attachment", new { id = attachment.Id })"
+                                       class="btn btn-primary">
+                                        Download
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p data-i18n="noAttachmentsAvailable" class="card-text">No attachments available.</p>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center d-flex justify-content-center">
+            <a data-i18n="backtoList" href="@Url.Action("Index", "AdminDashboard")" class="btn btn-primary">Back to List</a>
+        </div>
+    </div>
+</div>

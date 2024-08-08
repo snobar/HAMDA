@@ -1,0 +1,80 @@
+﻿@model HAMDA.Models.ViewModels.RegisterCostumerModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="wrapper">
+    <div class="grid-cols-2">
+        <div class="grid-item-1">
+            <h1 class="main-heading1" data-i18n="title1">HAMDA MAKEUP</h1>
+            <h1 class="main-heading2" data-i18n="title2">MASTERCLASS</h1>
+            <h1 class="main-heading3" data-i18n="title3">HAS ARRIVED!</h1>
+            <hr class="solid" />
+            <p class="info-text" data-i18n="description">
+                For the first time, Hamda makeup artist invites you to experience
+                her masterclass.
+            </p>
+
+            <div class="btn_wrapper">
+                <button class="btn" id="openPopup" data-i18n="registerBtn">
+                    <span>REGISTER NOW</span>
+                </button>
+            </div>
+            <p class="btn-label" data-i18n="limitedSeats">Limited seats.</p>
+            <div class="info-container">
+                <p data-i18n="locationDetails1">
+                    Location: The Lana Hotel - Dorchester Collection
+                </p>
+                <p data-i18n="locationDetails2">Date: 26th August 2024</p>
+                <p data-i18n="locationDetails3">Time: 5:00 pm to 10:00 pm</p>
+            </div>
+        </div>
+        <div class="grid-item-2">
+            <div class="slider-container">
+                <div class="slider"></div>
+                <div class="dots-container"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <div class="form-header">
+            <h2 data-i18n="registerBtn">Register Now</h2>
+            <span class="close">&times;</span>
+        </div>
+        <p data-i18n="formHeader">
+            I will be sharing the secrets behind how I create some of my most
+            iconic looks, including tips and techniques.
+        </p>
+        @using (Html.BeginForm("RegistCostumer", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "registrationForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.LabelFor(m => m.Username, new { data_i18n = "username" })
+            @Html.TextBoxFor(m => m.Username, new { @id = "username", @required = "required" })
+            @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(m => m.Country, new { data_i18n = "country" })
+            @Html.TextBoxFor(m => m.Country, new { @id = "country", @required = "required" })
+            @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(m => m.Phone, new { data_i18n = "phone" })
+            @Html.TextBoxFor(m => m.Phone, new { @id = "phone", @required = "required", @type = "tel" })
+            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(m => m.Email, new { data_i18n = "email" })
+            @Html.TextBoxFor(m => m.Email, new { @id = "email", @required = "required", @type = "email" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(m => m.Attachments,"Payment Images", new { data_i18n = "attachments" })
+            <input type="file" name="Attachments" id="attachments" multiple class="form-control" accept="image/*" />
+            <small class="form-text text-muted" data-i18n="attachmentsValidation">You can upload up to 10 images.</small>
+            @Html.ValidationMessageFor(m => m.Attachments, "", new { @class = "text-danger" })
+
+            <button type="submit" data-i18n="submit">Continue</button>
+        }
+    </div>
+</div>

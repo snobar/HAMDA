@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HAMDA</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <meta name="description"
+          content="Register for our makeup class with Hamda. Whether you're a beginner or a pro." />
+    <meta name="keywords" content="makeup, masterclass, Hamda" />
+    <link rel="icon" href="~/images/logo.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="~/images/logo.svg" type="image/x-icon" />
+</head>
+<body>
+
+    <header class="container header">
+        <nav class="nav">
+            <div class="logo">
+                <a asp-action="Index" asp-controller="Home">
+                    <img src="~/images/logo.svg" alt="logo" />
+                </a>
+            </div>
+            <div class="buttons-group">
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                    <form asp-action="AddAdmin" asp-controller="AdminAccountManager" method="Get" title="Add Admin" class="nav-item">
+                        <button type="submit" class="m-0">
+                            <img src="~/images/user-plus.svg" class="logout" alt="Add Admin" />
+                        </button>
+                    </form>
+
+                    <form asp-action="Index" asp-controller="AdminDashboard" method="Get" title="Dashboard" class="nav-item">
+                        <button type="submit" class="m-0">
+                            <img src="~/images/table2.svg" class="logout" alt="Dashboard" />
+                        </button>
+                    </form>
+                }
+                <button id="language-select">
+                    <img src="~/images/lang.svg" alt="language" />
+                </button>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <form asp-action="Logout" asp-controller="Account" method="post" title="Logout @User.Identity?.Name" class="nav-item">
+                        <button type="submit" class="m-0">
+                            <img src="~/images/exit.svg" class="logout" alt="Logout" />
+                        </button>
+                    </form>
+                }
+            </div>
+        </nav>
+    </header>
+    <div>
+        <main role="main">
+            @if (TempData["SuccessMessage1"] is not null)
+            {
+                <div class="alert alert-success alert-dismissible fade show hamda-alert" role="alert">
+                    <p data-i18n="successMessage1">
+                        @TempData["SuccessMessage1"]
+                    </p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (TempData["SuccessMessage2"] is not null)
+            {
+                <div class="alert alert-success alert-dismissible fade show hamda-alert" role="alert">
+                    <p data-i18n="successMessage2">
+                        @TempData["SuccessMessage2"]
+                    </p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (TempData["FailedMessage1"] is not null)
+            {
+                <div class="alert alert-success alert-dismissible fade show hamda-alert faild" role="alert">
+                    <p data-i18n="somethingWentWrong">
+                        @TempData["FailedMessage1"]
+                    </p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
