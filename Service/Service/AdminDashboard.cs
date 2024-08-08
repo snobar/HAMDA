@@ -103,11 +103,15 @@ namespace HAMDA.Service.Service
                 costumer.Status = model.Status;
                 _context.Costumers.Update(costumer);
 
-                var attachmentsSaved = true;
+                var attachmentsSaved = false;
 
-                if (model.Status == 2)
+                if (model.Status == 1)
                 {
                     attachmentsSaved = await _attachmentService.SaveAttachmentsAsync(model.Id, 1, model.SaveAttachments);
+                }
+                else if (model.Status == 2)
+                {
+                    attachmentsSaved = true;
                 }
 
 

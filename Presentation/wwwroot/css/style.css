@@ -173,14 +173,14 @@ h1 {
 }
 
 html[lang="ar"] .main-heading1,
-.main-heading2,
-.main-heading3 {
-  letter-spacing: unset !important;
+html[lang="ar"] .main-heading2,
+html[lang="ar"] .main-heading3 {
+    letter-spacing: unset !important;
 }
 
 .main-heading2 {
   font-family: classico-bold;
-  font-size: clamp(28px, calc(1.75rem + ((1vw - 3.2px) * 2.625)), 70px);
+  font-size: clamp(45px, calc(1.75rem + ((1vw - 3.2px) * 2.625)), 70px);
   line-height: 1.2;
   letter-spacing: 0.2em;
 }
@@ -294,10 +294,15 @@ html[lang="ar"] .main-heading1,
   }
 }
 @media screen and (max-width: 768px) {
-  .dots-container {
-    right: 50%;
-    transform: translateX(50%);
-  }
+    .dots-container {
+        /*bottom: 12rem;*/
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    .image-container {
+        height: 50vh;
+    }
 }
 .dot {
   width: 0.65rem;

@@ -1,0 +1,44 @@
+﻿@model ThankYouModel
+
+<div class="page-container details-container container">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-header text-center">
+            <div class="row">
+                <h3>@Model.UserName</h3>
+            </div>
+            @* <div class="row">
+            <h3 data-i18n="successMessage2">You have registered successfully!, we will reach you out soon.</h3>
+            </div> *@
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <h3 data-i18n="paymentsInfo" class="card-title"></h3>
+                    <h4 data-i18n="Makethepaymenttothefollowingaccount" class="card-title"></h4>
+                    <hr />
+                    <p class="card-text"><strong data-i18n="bankName">اسم البنك</strong>ADIB</p>
+                    <p class="card-text">
+                        <strong data-i18n="accountHolderName">اسم صاحب الحساب</strong>HAMDA ABDALLA HASSAN AL ALI
+                    </p>
+                    <p class="card-text"><strong data-i18n="accountNumbe">رقم الحساب</strong> 28272955</p>
+                    <p class="card-text"><strong data-i18n="IBAN">IBAN</strong>AE160500000000028272955</p>
+                    <p class="card-text"><strong data-i18n="SWIFT">SWIFT</strong>ABDIAEADXXX</p>
+                    <p class="card-text"><strong data-i18n="currency">العملة :</strong>AED</p>
+                    <p class="card-text"><strong data-i18n="Amount">القيمة</strong>2500</p>
+
+                    <h4 data-i18n="Aftercompletingthepayment" class="card-title"></h4>
+                    <h4 data-i18n="Takeascreenshotoraphotoofthepaymentconfirmation" class="card-title"></h4>
+                    <div class="sm-button-link">
+                        <h4 data-i18n="SendthepaymentconfirmationbyclickingontheWhatsAppbuttonprovided" class="card-title"></h4>
+                    </div>
+                    <div class="btn_wrapper">
+                        <a href="https://wa.me/+971501433305" target="_blank" class="btn d-flex justify-content-center align-items-center">
+                            Contact us &nbsp;
+                            <img src="~/images/whatsapp.svg" alt="Details" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

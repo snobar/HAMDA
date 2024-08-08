@@ -11,5 +11,6 @@ namespace HAMDA.Models.EntityModels.Enum
         Active = 1,
         Deleted = 2,
         Pending = 3,
+        Completed = 4,
     }
 }

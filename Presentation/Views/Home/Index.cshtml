@@ -15,13 +15,25 @@
                 For the first time, Hamda makeup artist invites you to experience
                 her masterclass.
             </p>
-
-            <div class="btn_wrapper">
-                <button class="btn" id="openPopup" data-i18n="registerBtn">
-                    <span>REGISTER NOW</span>
-                </button>
+            <p class="info-text" data-i18n="formHeader">
+                I will be sharing the secrets behind how I create some of my most
+                iconic looks, including tips and techniques.
+            </p>
+            @if (@Model.CostumerCount < 25)
+            {
+                <div class="btn_wrapper">
+                    <button class="btn" id="openPopup" data-i18n="registerBtn">
+                        <span>REGISTER NOW</span>
+                    </button>
+                </div>
+            }
+            <div class="d-flex" style="margin: 0 20px;">
+                <p class="btn-label" data-i18n="limitedSeats">Limited seats.</p>
+                <p class="btn-label">
+                    &nbsp; (@Model.CostumerCount / 25)
+                </p>
             </div>
-            <p class="btn-label" data-i18n="limitedSeats">Limited seats.</p>
+            
             <div class="info-container">
                 <p data-i18n="locationDetails1">
                     Location: The Lana Hotel - Dorchester Collection
@@ -45,10 +57,6 @@
             <h2 data-i18n="registerBtn">Register Now</h2>
             <span class="close">&times;</span>
         </div>
-        <p data-i18n="formHeader">
-            I will be sharing the secrets behind how I create some of my most
-            iconic looks, including tips and techniques.
-        </p>
         @using (Html.BeginForm("RegistCostumer", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "registrationForm" }))
         {
             @Html.AntiForgeryToken()

@@ -5,6 +5,8 @@ namespace HAMDA.Models.ViewModels
 {
     public class RegisterCostumerModel
     {
+        public int? CostumerCount { get; set; }
+
         [Required(ErrorMessage = "Username is required")]
         public string Username { get; set; }
 

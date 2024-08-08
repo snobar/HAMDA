@@ -45,11 +45,43 @@ body {
         width: fit-content;
     }
 
+    .main-heading2 {
+        letter-spacing: 0.2em;
+    }
+
     .page-container {
         justify-content: center !important;
         margin-top: 15vh;
         padding: 10px 40px;
         width: 100%;
+
+
+        .sm-button-link {
+            display: flex;
+            align-items: flex-end;
+
+            a {
+                margin: 10px 20px;
+
+                img {
+                    width: 40px;
+                }
+            }
+        }
+
+        .tab-pane {
+            overflow-x: auto;
+        }
+    }
+
+    .btn_wrapper {
+        a {
+            width: 100%;
+        }
+
+        button {
+            width: 90%;
+        }
     }
 
     .AddAdmin-form {

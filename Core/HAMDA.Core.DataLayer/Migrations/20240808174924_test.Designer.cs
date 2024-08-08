@@ -4,6 +4,7 @@ using HAMDA.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HAMDA.Core.DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240808174924_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -226,14 +229,14 @@ namespace HAMDA.Core.DataLayer.Migrations
                         {
                             Id = "20dcdd1d-134c-4ce7-ba60-63aaa7535590",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "90ecb97e-8432-4897-b27e-d227ace2cfc4",
+                            ConcurrencyStamp = "082e689d-2679-4e37-99eb-2efe793e03a5",
                             Email = "Admin@hamda.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "Admin@hamda.com",
                             PasswordHash = "AQAAAAIAAYagAAAAEPkTIuEco1Bk2uZSa78Gp+82zNJA5MC3+zgF/Y6qHnuRrqFaVbFU/ksBSKVCCa2d8w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "987a5b6e-a30d-4346-8a10-8a4ae49303c9",
+                            SecurityStamp = "41903bea-d513-4766-84de-4b3a2290a4e2",
                             TwoFactorEnabled = false,
                             UserName = "Admin@hamda.com"
                         });

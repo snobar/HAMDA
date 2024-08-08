@@ -4,9 +4,21 @@
     <!-- Tabs -->
     <ul class="nav nav-tabs">
         <li class="nav-item flex-fill">
+            <a data-i18n="pending" class="nav-link @(Model.CurrentStatus == (int)HAMDA.Models.EntityModels.Enum.Status.Pending ? "active" : "")"
+               asp-action="Index" asp-route-pageNumber="1" asp-route-status="@((int)HAMDA.Models.EntityModels.Enum.Status.Pending)">
+                Pending
+            </a>
+        </li>
+        <li class="nav-item flex-fill">
             <a data-i18n="approved" class="nav-link @(Model.CurrentStatus == (int)HAMDA.Models.EntityModels.Enum.Status.Active ? "active" : "")"
                asp-action="Index" asp-route-pageNumber="1" asp-route-status="@((int)HAMDA.Models.EntityModels.Enum.Status.Active)">
                 Approved
+            </a>
+        </li>
+        <li class="nav-item flex-fill">
+            <a data-i18n="completedTheCourse" class="nav-link @(Model.CurrentStatus == (int)HAMDA.Models.EntityModels.Enum.Status.Completed ? "active" : "")"
+               asp-action="Index" asp-route-pageNumber="1" asp-route-status="@((int)HAMDA.Models.EntityModels.Enum.Status.Completed)">
+                Completed
             </a>
         </li>
         <li class="nav-item flex-fill">
@@ -15,17 +27,19 @@
                 Deleted
             </a>
         </li>
-        <li class="nav-item flex-fill">
-            <a data-i18n="pending" class="nav-link @(Model.CurrentStatus == (int)HAMDA.Models.EntityModels.Enum.Status.Pending ? "active" : "")"
-               asp-action="Index" asp-route-pageNumber="1" asp-route-status="@((int)HAMDA.Models.EntityModels.Enum.Status.Pending)">
-                Pending
-            </a>
-        </li>
     </ul>
 
 
     <!-- Tab Content -->
     <div class="tab-content mt-3">
+        @if (Model.CurrentStatus == 1)
+        {
+            <div class="btn_wrapper mb-2">
+                <a class="btn" style="width:fit-content!important" data-i18n="Movealltheactivetotheold" asp-action="UpdateActiveCostumersToOld">
+                    Move all the active to the old
+                </a>
+            </div>
+        }
         <div class="tab-pane fade show active">
             @if (Model.lstItems.IsNotNullOrEmpty())
             {

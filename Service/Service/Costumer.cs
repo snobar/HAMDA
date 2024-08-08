@@ -2,6 +2,7 @@
 using HAMDA.Models.EntityModels.Enum;
 using HAMDA.Repository.IService;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.EntityFrameworkCore;
 using System.Text;
 
 namespace HAMDA.Service.Service
@@ -43,6 +44,28 @@ namespace HAMDA.Service.Service
             }
 
             return false;
+        }
+
+        public async Task<int> GetActiveCostumersCount()
+        {
+            var count = await _context.Costumers.CountAsync(x=>x.Status == 1);
+
+            return count;
+        }
+
+        public async Task<bool> UpdateActiveCostumersToOld()
+        {
+            var allActive = _context.Costumers.Where(x=>x.Status == 1);
+
+            foreach (var item in allActive)
+            {
+                item.Status = 4;
+            }
+            _context.Costumers.UpdateRange(allActive);
+
+            var IsUpdated = await _context.SaveChangesAsync() > 0;
+
+            return IsUpdated;
         }
     }
 }

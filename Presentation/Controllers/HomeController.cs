@@ -1,9 +1,7 @@
 using HAMDA.Core.Extentions;
-using HAMDA.Models;
+using HAMDA.Models.ViewModels;
 using HAMDA.Repository.IService;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace HAMDA.Controllers
 {
@@ -17,13 +15,21 @@ namespace HAMDA.Controllers
             _costumer = costumer;
         }
 
-        public IActionResult Index(string errorMessage = null)
+        public async Task<IActionResult> Index(string errorMessage = null)
         {
             if (errorMessage.IsNotNullOrEmpty())
             {
                 TempData["FailedMessage1"] = errorMessage;
             }
-            return View();
+
+            var costumerCount = await _costumer.GetActiveCostumersCount();
+
+            return View(new RegisterCostumerModel { CostumerCount = costumerCount });
+        }
+
+        public IActionResult ThankYouPage(ThankYouModel model)
+        {
+            return View(model);
         }
 
         [HttpPost]
@@ -35,10 +41,13 @@ namespace HAMDA.Controllers
                 var response = await _costumer.AddCostumer(Model);
                 if (response)
                 {
-                    TempData["SuccessMessage2"] = "You have registered successfully!, we will reach you out soon.";
+                    return RedirectToAction("ThankYouPage", new ThankYouModel { UserName = Model.Username });
                 }
             }
-            return View("Index");
+
+            var costumerCount = await _costumer.GetActiveCostumersCount();
+            Model.CostumerCount = costumerCount;
+            return View("Index", Model);
         }
     }
 }

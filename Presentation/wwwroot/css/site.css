@@ -11927,11 +11927,33 @@ body .hamda-alert.faild {
 body .btn {
   width: fit-content;
 }
+body .main-heading2 {
+  letter-spacing: 0.2em;
+}
 body .page-container {
   justify-content: center !important;
   margin-top: 15vh;
   padding: 10px 40px;
   width: 100%;
+}
+body .page-container .sm-button-link {
+  display: flex;
+  align-items: flex-end;
+}
+body .page-container .sm-button-link a {
+  margin: 10px 20px;
+}
+body .page-container .sm-button-link a img {
+  width: 40px;
+}
+body .page-container .tab-pane {
+  overflow-x: auto;
+}
+body .btn_wrapper a {
+  width: 100%;
+}
+body .btn_wrapper button {
+  width: 90%;
 }
 body .AddAdmin-form {
   display: flex;

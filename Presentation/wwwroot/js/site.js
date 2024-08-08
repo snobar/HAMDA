@@ -5,7 +5,7 @@
         title3: "HAS ARRIVED!",
         description:
             "For the first time, Hamda makeup artist invites you to experience her masterclass.",
-        registerBtn: "Register Now",
+        registerBtn: "REGISTER NOW",
         limitedSeats: "Limited seats.",
         locationDetails1: "Location: The Lana hotel - Dorchester Collection",
         locationDetails2: "26th August 2024",
@@ -40,7 +40,24 @@
         backtoList: "Back to List",
         successMessage1: "Admin user added successfully!",
         successMessage2: "You have registered successfully!, we will reach you out soon.",
-        somethingWentWrong:"Something Went Wrong!, Please Try Again."
+        somethingWentWrong: "Something Went Wrong!, Please Try Again.",
+        paymentsInfo: "Please follow the steps below to make the payment",
+        paymentsInfo: "Please follow the steps below to make the payment",
+        Makethepaymenttothefollowingaccount:"Make the payment to the following account :",
+        Aftercompletingthepayment:"After completing the payment :",
+        Takeascreenshotoraphotoofthepaymentconfirmation: "Take a screenshot or a photo of the payment confirmation.",
+        SendthepaymentconfirmationbyclickingontheWhatsAppbuttonprovided: "Send the payment confirmation by clicking on the WhatsApp button provided.",
+        bankName:"Bank Name :",
+        accountHolderName:"Account Holder Name :",
+        accountNumbe:"Account Number :",
+        IBAN:"IBAN :",
+        SWIFT:"SWIFT :",
+        currency:"Currency :",
+        Amount:"Amount :",
+        sendTo:"Please send a picture of the payment process by clicking on the WhatsApp button",
+        Movealltheactivetotheold: "Move all the active to the old",
+        completedTheCourse:"Completed",
+
     },
     ar: {
         title1: "حمده ميكاب آرتيست",
@@ -83,7 +100,22 @@
         backtoList: "العودة الى القائمه",
         successMessage1: "تم اضافة مستخدم اداري جديد بنجاح!",
         successMessage2: "لقد قمت بالتسجيل بنجاح! سوف نتواصل معك قريبا.",
-        somethingWentWrong: "حدث خطأ ما!، يرجى المحاولة مرة أخرى."
+        somethingWentWrong: "حدث خطأ ما!، يرجى المحاولة مرة أخرى.",
+        paymentsInfo:"معلومات الدفع",
+        bankName: "اسم البنك :",
+        accountHolderName: "اسم صاحب الحساب :",
+        accountNumbe: "رقم الحساب :",
+        IBAN: "IBAN :",
+        SWIFT: "SWIFT :",
+        currency: "العملة :",
+        Amount: "القيمة :",
+        sendTo: "يرجى ارسال صورة لعملية الدفع عن طريق الضغط على زر الواتساب",
+        Makethepaymenttothefollowingaccount: "قم بالدفع إلى الحساب التالي :",
+        Aftercompletingthepayment: "بعد إتمام الدفع :",
+        Takeascreenshotoraphotoofthepaymentconfirmation: "التقط لقطة شاشة أو صورة لتأكيد الدفع.",
+        SendthepaymentconfirmationbyclickingontheWhatsAppbuttonprovided: "أرسل تأكيد الدفع بالنقر فوق زر WhatsApp.",
+        Movealltheactivetotheold: "نقل السجل الى حالة مكتمل",
+        completedTheCourse: "مكتمل",
     },
 };
 
@@ -152,10 +184,8 @@ function onLanguageChange() {
 
 function setLanguage(language) {
     const elements = document.querySelectorAll("[data-i18n]");
-    console.log(elements);
     elements.forEach((element) => {
         const translationKey = element.getAttribute("data-i18n");
-        console.log(translationKey);
         element.textContent = translations[language][translationKey];
     });
     document.dir = language === "ar" ? "rtl" : "ltr";

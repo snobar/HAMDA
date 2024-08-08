@@ -20,11 +20,6 @@ namespace HAMDA.Service.Service
             var user = new IdentityUser { UserName = model.Email, Email = model.Email ,NormalizedUserName = $"{model.FirstName} {model.LastName}"};
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
 
-            /*
-             var user = new IdentityUser { UserName = "Admin@hamda.com", Email = "Admin@hamda.com" ,NormalizedUserName = "Admin@hamda.com"};
-            IdentityResult result = await _userManager.CreateAsync(user, "Admin123");
-             */
-
             if (result.Succeeded)
             {
                 if (!await _roleManager.RoleExistsAsync("Admin"))
