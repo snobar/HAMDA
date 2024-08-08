@@ -40,7 +40,7 @@ namespace HAMDA.Service.Service
                 htmlMessage.Append($"<p>Thank you for getting in touch. We will reach out to you shortly.</p><br>");
                 htmlMessage.Append($"<p>Best regards,<br>HAMDA Team</p><br>");
 
-                await _emailSender.SendEmailAsync(Model.Email, "Thank you for your registry at HAMDA", htmlMessage.ToString());
+                 await _emailSender.SendEmailAsync(Model.Email, "Thank you for your registry at HAMDA", htmlMessage.ToString());
                 return true;
             }
 

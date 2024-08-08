@@ -34,7 +34,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Core\HAMDA.Core.SystemCore\HAMDA.Core.SystemCore.csproj" />
     <ProjectReference Include="..\Models\ViewModels\HAMDA.Models.ViewModels.csproj" />
-    <ProjectReference Include="..\Provider\HAMDA.Provider.Home\HAMDA.Provider.Home.csproj" />
     <ProjectReference Include="..\Provider\HAMDA.Provider.Middleware\HAMDA.Provider.Middleware.csproj" />
     <ProjectReference Include="..\Service\Service\HAMDA.Service.Service.csproj" />
   </ItemGroup>

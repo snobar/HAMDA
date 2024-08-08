@@ -24,27 +24,30 @@ namespace HAMDA.Service.Service
 
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            try
+            await Task.Run(() =>
             {
-                var mailMessage = new MailMessage
+                try
                 {
-                    From = new MailAddress(_fromEmail),
-                    Subject = subject,
-                    Body = htmlMessage,
-                    IsBodyHtml = true,
-                };
-                mailMessage.To.Add(email);
+                    var mailMessage = new MailMessage
+                    {
+                        From = new MailAddress(_fromEmail),
+                        Subject = subject,
+                        Body = htmlMessage,
+                        IsBodyHtml = true,
+                    };
+                    mailMessage.To.Add(email);
 
-                await _smtpClient.SendMailAsync(mailMessage);
-            }
-            catch (SmtpException ex)
-            {
-                Console.WriteLine($"SMTP exception: {ex.Message}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"General exception: {ex.Message}");
-            }
+                    _smtpClient.Send(mailMessage); // Use Send instead of SendMailAsync
+                }
+                catch (SmtpException ex)
+                {
+                    Console.WriteLine($"SMTP exception: {ex.Message}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"General exception: {ex.Message}");
+                }
+            });
 
         }
 
