@@ -1,30 +1,56 @@
 ﻿@model AdminDashboardModel
 
+
 <div class="page-container">
+    <div class="mb-4">
+        <h5 data-i18n="generalConfiguration" class="card-title">generalConfiguration</h5>
+        <hr />
+        <form asp-action="UpdateRoomSeatsNumber" method="post">
+            <div>
+                @Html.Label("NumberOfSeats", "numberOfSeats", new { data_i18n = "numberOfSeats" })
+                @Html.TextBox("NumberOfSeats", Model.NumberOfSeats, new { @id = "NumberOfSeats", @required = "required", @class = "form-control" })
+                <div class="btn_wrapper radius-unset m-0">
+                    <button type="submit" class="btn button-100" data-i18n="updateNumberOfSeats">updateNumberOfSeats</button>
+                </div>
+            </div>
+        </form>
+
+        @if (Model.CurrentStatus == 1 && Model.totalCount > 0)
+        {
+            <div class="btn_wrapper radius-unset mt-4">
+                <a onclick="return confirm(' Are you sure you want to perform this action?');" class="btn height-fit" data-i18n="Movealltheactivetotheold" asp-action="UpdateActiveCostumersToOld">
+                    Move all the active to the old
+                </a>
+            </div>
+        }
+        <hr />
+    </div>
+
+
     <!-- Tabs -->
     <ul class="nav nav-tabs">
         <li class="nav-item flex-fill">
-            <a data-i18n="pending" class="nav-link @(Model.CurrentStatus == (int)HAMDA.Models.EntityModels.Enum.Status.Pending ? "active" : "")"
+            <a data-i18n="pending" data-i18n-replace="@(Model.CurrentStatus == (int)HAMDA.Models.EntityModels.Enum.Status.Pending ? $"({Model.totalCount})" : "")" class="nav-link @(Model.CurrentStatus == (int)HAMDA.Models.EntityModels.Enum.Status.Pending ? "active" : "")"
                asp-action="Index" asp-route-pageNumber="1" asp-route-status="@((int)HAMDA.Models.EntityModels.Enum.Status.Pending)">
                 Pending
             </a>
         </li>
         <li class="nav-item flex-fill">
-            <a data-i18n="approved" class="nav-link @(Model.CurrentStatus == (int)HAMDA.Models.EntityModels.Enum.Status.Active ? "active" : "")"
+            <a data-i18n="approved" data-i18n-replace="@(Model.CurrentStatus == (int)HAMDA.Models.EntityModels.Enum.Status.Active ? $"({Model.totalCount})" : "")" class="nav-link @(Model.CurrentStatus == (int)HAMDA.Models.EntityModels.Enum.Status.Active ? "active" : "")"
                asp-action="Index" asp-route-pageNumber="1" asp-route-status="@((int)HAMDA.Models.EntityModels.Enum.Status.Active)">
-                Approved
+                Approved 
             </a>
         </li>
         <li class="nav-item flex-fill">
-            <a data-i18n="completedTheCourse" class="nav-link @(Model.CurrentStatus == (int)HAMDA.Models.EntityModels.Enum.Status.Completed ? "active" : "")"
+            <a data-i18n="completedTheCourse" data-i18n-replace="@(Model.CurrentStatus == (int)HAMDA.Models.EntityModels.Enum.Status.Completed ? $"({Model.totalCount})" : "")" class="nav-link @(Model.CurrentStatus == (int)HAMDA.Models.EntityModels.Enum.Status.Completed ? "active" : "")"
                asp-action="Index" asp-route-pageNumber="1" asp-route-status="@((int)HAMDA.Models.EntityModels.Enum.Status.Completed)">
-                Completed
+                Completed 
             </a>
         </li>
         <li class="nav-item flex-fill">
-            <a data-i18n="deleted" class="nav-link @(Model.CurrentStatus == (int)HAMDA.Models.EntityModels.Enum.Status.Deleted ? "active" : "")"
+            <a data-i18n="deleted" data-i18n-replace="@(Model.CurrentStatus == (int)HAMDA.Models.EntityModels.Enum.Status.Deleted ? $"({Model.totalCount})" : "")" class="nav-link @(Model.CurrentStatus == (int)HAMDA.Models.EntityModels.Enum.Status.Deleted ? "active" : "")"
                asp-action="Index" asp-route-pageNumber="1" asp-route-status="@((int)HAMDA.Models.EntityModels.Enum.Status.Deleted)">
-                Deleted
+                Deleted 
             </a>
         </li>
     </ul>
@@ -32,20 +58,27 @@
 
     <!-- Tab Content -->
     <div class="tab-content mt-3">
-        @if (Model.CurrentStatus == 1)
-        {
-            <div class="btn_wrapper mb-2">
-                <a class="btn" style="width:fit-content!important" data-i18n="Movealltheactivetotheold" asp-action="UpdateActiveCostumersToOld">
-                    Move all the active to the old
-                </a>
+        <form asp-action="hSearchOnData" method="post">
+            @Html.HiddenFor(x => x.CurrentStatus)
+            <div class="row mb-3">
+                <div class="col-md-4 col-sm-8">
+                    @Html.Label("hSearch", "hSearch", new { data_i18n = "hSearch" })
+                    @Html.TextBox("hSearch", Model.hSearch, new { @id = "hSearch", @required = "required", @class = "form-control hSearch" })
+                </div>
+                <div class="col-md-2 col-sm-4 d-flex align-items-end">
+                    <div class="btn_wrapper radius-unset m-0">
+                        <button type="submit" class="btn button-100" data-i18n="filter">filter</button>
+                    </div>
+                </div>
             </div>
-        }
+        </form>
         <div class="tab-pane fade show active">
             @if (Model.lstItems.IsNotNullOrEmpty())
             {
                 <table class="table table-dark table-striped">
                     <thead>
                         <tr>
+                            <th scope="col">Id</th>
                             <th data-i18n="username" scope="col">Username</th>
                             <th data-i18n="email" scope="col">Email</th>
                             <th data-i18n="phone" scope="col">Phone</th>
@@ -58,6 +91,7 @@
                         @foreach (var item in Model.lstItems)
                         {
                             <tr>
+                                <td>@item.Id</td>
                                 <td>@item.Username</td>
                                 <td>@item.Email</td>
                                 <td>@item.Phone</td>

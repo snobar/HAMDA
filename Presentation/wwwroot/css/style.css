@@ -69,6 +69,10 @@ h1 {
   width: 100%;
 }
 
+.header-container {
+    width: 100%;
+}
+
 /* ==== HEADER ==== */
 .header {
   width: 90%;
@@ -199,7 +203,7 @@ html[lang="ar"] .main-heading3 {
 }
 .info-text {
   font-size: clamp(14px, calc(0.875rem + ((1vw - 14.4px) * -0.1786)), 16px);
-  margin-top: 2em;
+  /*margin-top: 2em;*/
   line-height: 30px;
   color: var(--subtext-content);
   max-width: 30vmax;

@@ -30,7 +30,8 @@ namespace HAMDA.Controllers
                 var response = await _accountService.AddAdmin(model);
                 if (response.Succeeded)
                 {
-                    TempData["SuccessMessage1"] = "Admin user added successfully!";
+                    TempData["SuccessMessage1"] = true;
+                    TempData["SuccessMessage2"] = "adminuseraddedsuccessfully";
                     return RedirectToAction("Index", "AdminDashboard");
                 }
                 else

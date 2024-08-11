@@ -13,28 +13,42 @@
                     <p class="card-text"><strong data-i18n="username">Country:</strong> @Model.Country</p>
                     <p class="card-text"><strong data-i18n="phone">Phone:</strong> @Model.Phone</p>
                     <p class="card-text"><strong data-i18n="email">Email:</strong> @Model.Email</p>
-                    @if (Model.CurrentStatus == 3)
+                    @if (Model.CurrentStatus == 3 || Model.CurrentStatus == 1)
                     {
+
                         <form asp-action="MakeAction" asp-controller="AdminDashboard" asp-route-Id="@Model.Id" enctype="multipart/form-data" method="post" id="frmMakeAction">
-                            @Html.HiddenFor(Model=>Model.Id)
-                            @Html.Hidden("Status","")
-                            @Html.Label("SaveAttachments", "Payment Images", new { data_i18n = "attachments" })
-                            <input type="file" name="SaveAttachments" id="SaveAttachments" multiple class="form-control" accept="image/*" />
-                            <small class="form-text text-muted" data-i18n="attachmentsValidation">You can upload up to 10 images.</small>
+                            @Html.HiddenFor(Model => Model.Id)
+                            @Html.Hidden("Status", "")
+                            @if (Model.CurrentStatus == 3)
+                            {
+                                @Html.Label("SaveAttachments", "Payment Images", new { data_i18n = "attachments" })
+                                <input type="file" name="SaveAttachments" id="SaveAttachments" multiple class="form-control" accept="image/*" />
+                                <small class="form-text text-muted" data-i18n="attachmentsValidation">You can upload up to 10 images.</small>
+                            }
+
                             @Html.ValidationMessage("SaveAttachments", "", new { @class = "text-danger" })
                         </form>
+                        @if (Model.CurrentStatus == 3)
+                        {
+                            <button data-i18n="approve" type="submit" class="btn btn-primary button-100" onclick="makeActions(1)">
+                                Approve
+                            </button>
+                        }
 
-                        <button data-i18n="approve" type="submit" class="btn btn-primary" onclick="makeActions(1)">
-                            Approve
-                        </button>
-
-                        <button data-i18n="delete" type="submit" class="btn btn-danger mt-2" onclick="makeActions(2)">
+                        <button data-i18n="delete" type="submit" class="btn btn-danger button-100 mt-2 mb-2" onclick="makeActions(2)">
                             Delete
                         </button>
+                        <hr />
 
                         <script>
-                            function makeActions(status){
-                                var confirmation = confirm("Are you sure you want to perform this action?");
+                            function makeActions(status) {
+                            @if (Model.CurrentStatus == 1)
+                            {
+                                @Html.Raw("status = 2;")
+                            }
+
+
+                                                                                        var confirmation = confirm("Are you sure you want to perform this action?");
 
                                 if (confirmation) {
                                     // Get the hidden input element for the status
@@ -50,41 +64,52 @@
                             }
                         </script>
                     }
-                    
+
                 </div>
-                <div class="col-md-6">
-                    <h5 data-i18n="attachments" class="card-title">Attachments</h5>
-                    <p class="card-text"><strong data-i18n="paymentsCount">Total Attachments:</strong> @Model.AttachmentsCount</p>
-                    @if (Model.Attachments.IsNotNullOrEmpty())
-                    {
-                        <ul class="list-group list-group-flush">
-                            @foreach (var attachment in Model.Attachments)
-                            {
-                                <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
-                                    <div class="d-flex align-items-center">
-                                        @* Display image thumbnail if MimeType is an image *@
-                                        @if (attachment.MimeType.StartsWith("image/"))
-                                        {
-                                            <img src="data:@attachment.MimeType;base64,@attachment.Content"
-                                                 alt="@attachment.FileName"
-                                                 class="img-thumbnail"
-                                                 loading="lazy"
-                                                 style="max-width: 200px; max-height: 200px;" />
-                                        }
-                                    </div>
-                                    <a data-i18n="download" href="@Url.Action("Download", "Attachment", new { id = attachment.Id })"
-                                       class="btn btn-primary">
-                                        Download
-                                    </a>
-                                </li>
-                            }
-                        </ul>
-                    }
-                    else
-                    {
-                        <p data-i18n="noAttachmentsAvailable" class="card-text">No attachments available.</p>
-                    }
-                </div>
+                @if (Model.CurrentStatus != 3)
+                {
+                    <div class="col-md-6">
+                        <h5 data-i18n="attachments" class="card-title">Attachments</h5>
+                        @if (Model.Attachments.IsNotNullOrEmpty())
+                        {
+                            <ul class="list-group list-group-flush">
+                                @foreach (var attachment in Model.Attachments)
+                                {
+                                    <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
+                                        <div class="row button-100">
+                                            <div class="col-md-12">
+                                                <div class="d-flex align-items-center">
+                                                    @* Display image thumbnail if MimeType is an image *@
+                                                    @if (attachment.MimeType.StartsWith("image/"))
+                                                    {
+                                                        <img src="data:@attachment.MimeType;base64,@attachment.Content"
+                                                             alt="@attachment.FileName"
+                                                             class="img-thumbnail"
+                                                             loading="lazy"
+                                                             style="max-width: 100%; max-height: 200px;margin:10px 0px" />
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <a data-i18n="download" href="@Url.Action("Download", "Attachment", new { id = attachment.Id })"
+                                                   class="btn btn-primary button-100">
+                                                    Download
+                                                </a>
+                                            </div>
+                                        </div>
+
+
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <p data-i18n="noAttachmentsAvailable" class="card-text">No attachments available.</p>
+                        }
+                    </div>
+
+                }
             </div>
         </div>
         <div class="card-footer text-center d-flex justify-content-center">

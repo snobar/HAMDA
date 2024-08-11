@@ -19,6 +19,11 @@ namespace HAMDA.Data
         #region System
         public DbSet<HAMDA.Models.EntityModels.System.Attachment> Attachments { get; set; }
         #endregion
+        
+        
+        #region Admin dashboard
+        public DbSet<HAMDA.Models.EntityModels.AdminDashboard.Configuration> Configuration { get; set; }
+        #endregion
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -47,6 +52,15 @@ namespace HAMDA.Data
                 RoleId = "3ea9a713-aaf4-419d-bb97-849714fe91a2"
             });
             #endregion
+
+            #region Admin dashboard
+            modelBuilder.Entity<Models.EntityModels.AdminDashboard.Configuration>().HasData(new Models.EntityModels.AdminDashboard.Configuration
+            {
+                Id = 1,
+            });
+            #endregion
+
+
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -1,10 +1,13 @@
 ﻿using HAMDA.Core.Extentions;
 using HAMDA.Data;
+using HAMDA.Models.EntityModels.Costumer;
 using HAMDA.Models.EntityModels.Enum;
 using HAMDA.Models.ViewModels;
 using HAMDA.Repository.IService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace HAMDA.Service.Service
 {
@@ -20,12 +23,12 @@ namespace HAMDA.Service.Service
         }
 
 
-        public async Task<AdminDashboardModel> GetAllAsync(int status, int pageNumber, int pageSize)
+        public async Task<AdminDashboardModel> GetAllAsync(int status, int pageNumber, int pageSize,string hSearch = null)
         {
             var skip = (pageNumber - 1) * pageSize;
 
             var costumers = await _context.Costumers
-                .Where(x => x.Status == status)
+                .Where(GetAllCustomersCondition(status,hSearch))
                 .Skip(skip)
                 .Take(pageSize)
                 .ToListAsync();
@@ -35,14 +38,12 @@ namespace HAMDA.Service.Service
                 lstItems = new List<AdminDashboarditems>(),
                 totalCount = await _context.Costumers.CountAsync(x => x.Status == status),
                 pageNumber = pageNumber,
-                pageSize = pageSize
+                pageSize = pageSize,
+                NumberOfSeats = (await _context.Configuration.FirstOrDefaultAsync(x => x.Id == 1)).NumberOfSeats
             };
 
             if (costumers.IsNotNullOrEmpty())
-            {
-                result.pageNumber = pageNumber;
-                result.pageSize = pageSize;
-
+            {                
                 foreach (var costumer in costumers)
                 {
                     var lstAttachments = await _attachmentService.GetAttachmentsCountAsync(costumer.Id, 1);
@@ -55,19 +56,27 @@ namespace HAMDA.Service.Service
                         Username = costumer.Username,
                         AttachmentsCount = lstAttachments,
                     });
-                }
-
-                if (result.IsNotNullOrEmpty())
-                {
-                    return result;
-                }
+                }                
             }
 
-
-            return new AdminDashboardModel();
+            return result;
         }
 
+        private static Expression<Func<CostumerRegister, bool>> GetAllCustomersCondition(int status, string hSearch = null)
+        {
+            Expression<Func<CostumerRegister, bool>> condition = x => x.Status == status;
+            if (hSearch.IsNotNullOrEmpty())
+            {
+                hSearch = hSearch.ToLower();
+                condition = condition.AndAlso(x =>
+                    x.Email.ToLower().Contains(hSearch) ||
+                    x.Phone.ToLower().Contains(hSearch) ||
+                    x.Username.ToLower().Contains(hSearch) ||
+                    x.Country.ToLower().Contains(hSearch));
+            }
 
+            return condition;
+        }
 
         public async Task<AdminDashboarditems> Details(int Id)
         {
@@ -125,7 +134,19 @@ namespace HAMDA.Service.Service
 
         }
 
+        public async Task<bool> UpdateNumberOfSeats(int NumberOfSeats)
+        {
+            var configModel = await _context.Configuration.FirstOrDefaultAsync(x=>x.Id == 1);
 
+            if (configModel.IsNotNullOrEmpty())
+            {
+                configModel.NumberOfSeats = NumberOfSeats;
+                _context.Configuration.Update(configModel);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
 
     }
 }

@@ -4,6 +4,7 @@ using HAMDA.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HAMDA.Core.DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240811052324_Configuration")]
+    partial class Configuration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,15 +48,6 @@ namespace HAMDA.Core.DataLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Configuration");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            CreatedDate = new DateTime(2024, 8, 11, 8, 29, 24, 658, DateTimeKind.Local).AddTicks(5589),
-                            NumberOfSeats = 0,
-                            Status = 1
-                        });
                 });
 
             modelBuilder.Entity("HAMDA.Models.EntityModels.Costumer.CostumerRegister", b =>
@@ -260,14 +254,14 @@ namespace HAMDA.Core.DataLayer.Migrations
                         {
                             Id = "20dcdd1d-134c-4ce7-ba60-63aaa7535590",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7a42f55b-6f50-45e1-8dba-7d59a627dfe3",
+                            ConcurrencyStamp = "87e91ed3-4b9e-4e74-9997-d4f32412d36d",
                             Email = "Admin@hamda.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "Admin@hamda.com",
                             PasswordHash = "AQAAAAIAAYagAAAAEPkTIuEco1Bk2uZSa78Gp+82zNJA5MC3+zgF/Y6qHnuRrqFaVbFU/ksBSKVCCa2d8w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bfe87818-0af8-40de-b4e6-0011b93723c1",
+                            SecurityStamp = "0cd36370-fcdf-4dd0-a1f6-d19858254521",
                             TwoFactorEnabled = false,
                             UserName = "Admin@hamda.com"
                         });

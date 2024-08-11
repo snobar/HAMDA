@@ -7,39 +7,78 @@
 <section class="wrapper">
     <div class="grid-cols-2">
         <div class="grid-item-1">
-            <h1 class="main-heading1" data-i18n="title1">HAMDA MAKEUP</h1>
-            <h1 class="main-heading2" data-i18n="title2">MASTERCLASS</h1>
-            <h1 class="main-heading3" data-i18n="title3">HAS ARRIVED!</h1>
-            <hr class="solid" />
-            <p class="info-text" data-i18n="description">
-                For the first time, Hamda makeup artist invites you to experience
-                her masterclass.
-            </p>
-            <p class="info-text" data-i18n="formHeader">
-                I will be sharing the secrets behind how I create some of my most
-                iconic looks, including tips and techniques.
-            </p>
-            @if (@Model.CostumerCount < 25)
-            {
-                <div class="btn_wrapper">
-                    <button class="btn" id="openPopup" data-i18n="registerBtn">
-                        <span>REGISTER NOW</span>
-                    </button>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <h1 class="main-heading1" data-i18n="title1">HAMDA MAKEUP</h1>
+                    </div>
                 </div>
-            }
-            <div class="d-flex" style="margin: 0 20px;">
-                <p class="btn-label" data-i18n="limitedSeats">Limited seats.</p>
-                <p class="btn-label">
-                    &nbsp; (@Model.CostumerCount / 25)
-                </p>
-            </div>
-            
-            <div class="info-container">
-                <p data-i18n="locationDetails1">
-                    Location: The Lana Hotel - Dorchester Collection
-                </p>
-                <p data-i18n="locationDetails2">Date: 26th August 2024</p>
-                <p data-i18n="locationDetails3">Time: 5:00 pm to 10:00 pm</p>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <h1 class="main-heading2" data-i18n="title2">MASTERCLASS</h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <h1 class="main-heading3" data-i18n="title3">HAS ARRIVED!</h1>
+                    </div>
+                </div>
+
+                <hr class="solid mt-3 mb-3" />
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <p class="info-text" data-i18n="description">
+                            For the first time, Hamda makeup artist invites you to experience
+                            her masterclass.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <p class="info-text" data-i18n="formHeader">
+                            I will be sharing the secrets behind how I create some of my most
+                            iconic looks, including tips and techniques.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        @if (Model.CostumerCount > 0)
+                        {
+                            <div class="btn_wrapper">
+                                <button class="btn button-90" id="openPopup" data-i18n="registerBtn">
+                                    <span>REGISTER NOW</span>
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <span class="btn-label" data-i18n="limitedSeats">Limited seats.</span>
+                        <span class="btn-label">
+                            &nbsp; @Model.CostumerCount
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="info-container">
+                            <p data-i18n="locationDetails1">
+                                Location: The Lana Hotel - Dorchester Collection
+                            </p>
+                            <p data-i18n="locationDetails2">Date: 26th August 2024</p>
+                            <p data-i18n="locationDetails3">Time: 5:00 pm to 10:00 pm</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="grid-item-2">
@@ -51,38 +90,67 @@
     </div>
 </section>
 
-<div id="popup" class="popup">
-    <div class="popup-content">
-        <div class="form-header">
-            <h2 data-i18n="registerBtn">Register Now</h2>
-            <span class="close">&times;</span>
+@if (Model.CostumerCount > 0)
+{
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <div class="form-header">
+                <h2 data-i18n="registerBtn">Register Now</h2>
+                <span class="close">&times;</span>
+            </div>
+            @using (Html.BeginForm("RegistCostumer", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "registrationForm", onsubmit = "sbmtRegisterfrm(this)" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("CurrentLanguage", "")
+
+
+                @Html.LabelFor(m => m.Username, new { data_i18n = "username" })
+                @Html.TextBoxFor(m => m.Username, new { @id = "username", @required = "required" })
+                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(m => m.Country, new { data_i18n = "country" })
+                @Html.TextBoxFor(m => m.Country, new { @id = "country", @required = "required" })
+                @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(m => m.Phone, new { data_i18n = "phone" })
+                @Html.TextBoxFor(m => m.Phone, new { @id = "phone", @required = "required", @type = "tel" })
+                @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(m => m.Email, new { data_i18n = "email" })
+                @Html.TextBoxFor(m => m.Email, new { @id = "email", @required = "required", @type = "email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+                @*             @Html.LabelFor(m => m.Attachments,"Payment Images", new { data_i18n = "attachments" })
+        <input type="file" name="Attachments" id="attachments" multiple class="form-control" accept="image/*" />
+        <small class="form-text text-muted" data-i18n="attachmentsValidation">You can upload up to 10 images.</small>
+        @Html.ValidationMessageFor(m => m.Attachments, "", new { @class = "text-danger" }) *@
+
+                <button type="submit" data-i18n="submit">Continue</button>
+            }
+
+            <script>
+                function sbmtRegisterfrm(_form) {
+                    showHideLoader(true);
+
+
+                    var email = document.getElementById("email").value;
+                    var phone = document.getElementById("phone").value;
+
+                    if (!checkEmailAndPhone(email, phone)) {
+                        event.preventDefault();                        
+                        return false;
+                    }
+
+                    var _lang = localStorage.getItem("lang");
+                    var currentLanguageInput = document.querySelector('#registrationForm input[name="CurrentLanguage"]');
+                    currentLanguageInput.value = _lang;
+
+
+
+                    setTimeout(function () { showHideLoader(false); }, 1500);
+                    return true; // Allow form submission                    
+                }
+            </script>
         </div>
-        @using (Html.BeginForm("RegistCostumer", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "registrationForm" }))
-        {
-            @Html.AntiForgeryToken()
-
-            @Html.LabelFor(m => m.Username, new { data_i18n = "username" })
-            @Html.TextBoxFor(m => m.Username, new { @id = "username", @required = "required" })
-            @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
-
-            @Html.LabelFor(m => m.Country, new { data_i18n = "country" })
-            @Html.TextBoxFor(m => m.Country, new { @id = "country", @required = "required" })
-            @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
-
-            @Html.LabelFor(m => m.Phone, new { data_i18n = "phone" })
-            @Html.TextBoxFor(m => m.Phone, new { @id = "phone", @required = "required", @type = "tel" })
-            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
-
-            @Html.LabelFor(m => m.Email, new { data_i18n = "email" })
-            @Html.TextBoxFor(m => m.Email, new { @id = "email", @required = "required", @type = "email" })
-            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-
-@*             @Html.LabelFor(m => m.Attachments,"Payment Images", new { data_i18n = "attachments" })
-            <input type="file" name="Attachments" id="attachments" multiple class="form-control" accept="image/*" />
-            <small class="form-text text-muted" data-i18n="attachmentsValidation">You can upload up to 10 images.</small>
-            @Html.ValidationMessageFor(m => m.Attachments, "", new { @class = "text-danger" }) *@
-
-            <button type="submit" data-i18n="submit">Continue</button>
-        }
     </div>
-</div>
+}

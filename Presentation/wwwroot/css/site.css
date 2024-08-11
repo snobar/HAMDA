@@ -11894,8 +11894,57 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  display: none;
+}
+#loader .spinner {
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #000;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 body {
   overflow: unset !important;
+}
+body #footer {
+  background: inherit;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  font-size: 14px;
+  color: #000;
+}
+body #footer .info-text {
+  position: absolute;
+  bottom: 0;
+  padding: 0px 5%;
+}
+body #footer .info-text strong {
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 body .nav .buttons-group {
   display: flex;
@@ -11925,7 +11974,7 @@ body .hamda-alert.faild {
   border-color: #c57a7a;
 }
 body .btn {
-  width: fit-content;
+  width: fit-content !important;
 }
 body .main-heading2 {
   letter-spacing: 0.2em;
@@ -11949,11 +11998,30 @@ body .page-container .sm-button-link a img {
 body .page-container .tab-pane {
   overflow-x: auto;
 }
+body .page-container .tab-content .hSearch {
+  height: 50px;
+  border-radius: 0;
+}
+body .info-text {
+  /*margin : unset;*/
+}
+body .btn_wrapper.radius-unset a {
+  border-radius: unset !important;
+}
+body .btn_wrapper.radius-unset button {
+  border-radius: unset !important;
+}
 body .btn_wrapper a {
   width: 100%;
 }
-body .btn_wrapper button {
-  width: 90%;
+body .btn_wrapper a.height-fit {
+  height: fit-content;
+}
+body .button-90 {
+  width: 90% !important;
+}
+body .button-100 {
+  width: 100% !important;
 }
 body .AddAdmin-form {
   display: flex;
@@ -12003,6 +12071,9 @@ body .nav-tabs .nav-link.active {
 body .nav-tabs .nav-item {
   flex: 1;
 }
+body .nav-tabs .nav-item li {
+  width: 50%;
+}
 body .table .icon-logo {
   width: 25px;
 }
@@ -12043,4 +12114,27 @@ body .details-container .btn-primary:hover {
 body .details-container .btn-danger {
   background-color: #dd6666;
   color: #ffffff;
+}
+
+@media screen and (max-width: 768px) {
+  body .page-container {
+    margin-top: 0;
+    padding: 40px;
+  }
+  body .hamda-alert {
+    top: 8px;
+  }
+  body #footer .info-text {
+    width: 100%;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  body #footer .info-text strong {
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .nav-tabs .nav-item {
+    width: 50%;
+  }
 }

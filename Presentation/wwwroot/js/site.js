@@ -6,7 +6,7 @@
         description:
             "For the first time, Hamda makeup artist invites you to experience her masterclass.",
         registerBtn: "REGISTER NOW",
-        limitedSeats: "Limited seats.",
+        limitedSeats: "Limited seats, remaining :",
         locationDetails1: "Location: The Lana hotel - Dorchester Collection",
         locationDetails2: "26th August 2024",
         locationDetails3: " 5:00 pm to 10:00 pm",
@@ -16,47 +16,54 @@
         country: "Country",
         phone: "Phone",
         email: "Email",
-        paymentsCount:"Payment Images Count",
+        paymentsCount: "Images",
         submit: "Continue",
         attachments: "Payment Images",
         attachmentsValidation: "You can upload up to 10 images.",
-        firstName:"First Name",
-        lastName:"Last Name",
-        passowrd:"Passowrd",
+        firstName: "First Name",
+        lastName: "Last Name",
+        passowrd: "Passowrd",
         confirmPassword: "Confirm Password",
         addAdmin: "Add Admin User",
-        pending:"Pending",
-        deleted:"Deleted",
+        pending: "Pending",
+        deleted: "Deleted",
         approved: "Approved",
         next: "Next",
         previous: "السابق",
         noRecordsFound: "No records found.",
         details: "Requist Details",
         personalInformation: "Personal Information",
-        delete:"Delete",
-        approve:"Approve",
-        download:"Download",
-        noAttachmentsAvailable:"No attachments available.",
+        delete: "Delete",
+        approve: "Approve",
+        download: "Download",
+        noAttachmentsAvailable: "No attachments available.",
         backtoList: "Back to List",
-        successMessage1: "Admin user added successfully!",
-        successMessage2: "You have registered successfully!, we will reach you out soon.",
+        adminuseraddedsuccessfully: "Admin user added successfully!",
+        youhaveregisteredsuccessfully: "You have registered successfully!, we will reach you out soon.",
         somethingWentWrong: "Something Went Wrong!, Please Try Again.",
+        waitForApproval: "You have already registered, please wait for approval",
         paymentsInfo: "Please follow the steps below to make the payment",
         paymentsInfo: "Please follow the steps below to make the payment",
-        Makethepaymenttothefollowingaccount:"Make the payment to the following account :",
-        Aftercompletingthepayment:"After completing the payment :",
+        Makethepaymenttothefollowingaccount: "Make the payment to the following account :",
+        Aftercompletingthepayment: "After completing the payment :",
         Takeascreenshotoraphotoofthepaymentconfirmation: "Take a screenshot or a photo of the payment confirmation.",
         SendthepaymentconfirmationbyclickingontheWhatsAppbuttonprovided: "Send the payment confirmation by clicking on the WhatsApp button provided.",
-        bankName:"Bank Name :",
-        accountHolderName:"Account Holder Name :",
-        accountNumbe:"Account Number :",
-        IBAN:"IBAN :",
-        SWIFT:"SWIFT :",
-        currency:"Currency :",
-        Amount:"Amount :",
-        sendTo:"Please send a picture of the payment process by clicking on the WhatsApp button",
-        Movealltheactivetotheold: "Move all the active to the old",
-        completedTheCourse:"Completed",
+        bankName: "Bank Name :",
+        accountHolderName: "Account Holder Name :",
+        accountNumbe: "Account Number :",
+        IBAN: "IBAN :",
+        SWIFT: "SWIFT :",
+        currency: "Currency :",
+        Amount: "Amount :",
+        sendTo: "Please send a picture of the payment process by clicking on the WhatsApp button",
+        Movealltheactivetotheold: "Update all customers as completed",
+        completedTheCourse: "Completed",
+        numberOfSeats: "Number Of Seats",
+        updateNumberOfSeats: "Update number of seats",
+        generalConfiguration: "General Configuration",
+        filter: "Filter",
+        hSearch: "Search",
+        poweredby:"Powered by",
 
     },
     ar: {
@@ -66,7 +73,7 @@
         description:
             "الآن ولأول مرة، تدعوكم خبيرة المكياج حمدا لتجربة ماستر كلاس المكياج الخاص بها.",
         registerBtn: "سجل الآن",
-        limitedSeats: "المقاعد محدودة.",
+        limitedSeats: "المقاعد محدودة. متبقي :",
         locationDetails1: "الموقع فندق لانا - مجموعة دورتشستر",
         locationDetails2: "26 أغسطس 2024",
         locationDetails3: "5:00 مساءً إلى 10:00 مساءً",
@@ -76,7 +83,7 @@
         country: "البلد",
         phone: "رقم الهاتف",
         email: "البريد الإلكتروني",
-        paymentsCount: "عدد صور المدفوعات",
+        paymentsCount: "عدد الصور",
         submit: "متابعة",
         attachments: "صور المدفوعات",
         attachmentsValidation: "يمكن رفع لغاية 10 صور.",
@@ -87,7 +94,7 @@
         addAdmin: "إضافة مستخدم إداري",
         pending: "بإنتظار الموافقه",
         deleted: "محذوف",
-        approved: "تمت الموافقه عليه",
+        approved: "الموافق عليهم",
         next: "التالي",
         previous: "السابق",
         noRecordsFound: "لا يوجد نتائج.",
@@ -98,10 +105,11 @@
         download: "تحميل",
         noAttachmentsAvailable: "لا يوجد صور.",
         backtoList: "العودة الى القائمه",
-        successMessage1: "تم اضافة مستخدم اداري جديد بنجاح!",
-        successMessage2: "لقد قمت بالتسجيل بنجاح! سوف نتواصل معك قريبا.",
+        adminuseraddedsuccessfully: "تم اضافة مستخدم اداري جديد بنجاح!",
+        youhaveregisteredsuccessfully: "لقد قمت بالتسجيل بنجاح! سوف نتواصل معك قريبا.",
         somethingWentWrong: "حدث خطأ ما!، يرجى المحاولة مرة أخرى.",
-        paymentsInfo:"معلومات الدفع",
+        waitForApproval: "لقد قمت بالتسجيل مسبقا, يرجى انتظار الموافقة",
+        paymentsInfo: "معلومات الدفع",
         bankName: "اسم البنك :",
         accountHolderName: "اسم صاحب الحساب :",
         accountNumbe: "رقم الحساب :",
@@ -114,8 +122,14 @@
         Aftercompletingthepayment: "بعد إتمام الدفع :",
         Takeascreenshotoraphotoofthepaymentconfirmation: "التقط لقطة شاشة أو صورة لتأكيد الدفع.",
         SendthepaymentconfirmationbyclickingontheWhatsAppbuttonprovided: "أرسل تأكيد الدفع بالنقر فوق زر WhatsApp.",
-        Movealltheactivetotheold: "نقل السجل الى حالة مكتمل",
+        Movealltheactivetotheold: "تحديث كافة العملاء على أنهم مكتملون",
         completedTheCourse: "مكتمل",
+        numberOfSeats: "عدد المقاعد",
+        updateNumberOfSeats: "تحديث عدد المقاعد",
+        generalConfiguration: "اعدادات عامه",
+        filter: "تصفية",
+        hSearch: "بحث",
+        poweredby: "تم التطوير بواسطة",
     },
 };
 
@@ -152,6 +166,16 @@ const slides = [
 ];
 const language = localStorage.getItem("lang") || "en";
 
+function showHideLoader(show = true) {
+    var loader = document.getElementById("loader");
+    if (show) {
+        loader.style.display = "flex";
+    } else {
+        loader.style.display = "none";
+    }
+
+};
+
 document.addEventListener("DOMContentLoaded", init);
 languageSelector.addEventListener("click", onLanguageChange);
 //form.addEventListener("submit", validateForm);
@@ -159,7 +183,13 @@ openPopupBtn.onclick = openPopup;
 closeBtn.onclick = closePopup;
 window.onclick = closePopupOnClickOutside;
 
+
 function init() {
+
+    window.addEventListener("load", function () {
+        loader.style.display = "none";
+    });
+
     setLanguage(language);
     if (sliderContainer) {
         setInterval(autoSlide, 5000);
@@ -186,7 +216,13 @@ function setLanguage(language) {
     const elements = document.querySelectorAll("[data-i18n]");
     elements.forEach((element) => {
         const translationKey = element.getAttribute("data-i18n");
-        element.textContent = translations[language][translationKey];
+        let replaceData = element.getAttribute("data-i18n-replace");
+        if (replaceData) {
+            element.textContent = translations[language][translationKey] + " " + replaceData;
+        } else {
+            element.textContent = translations[language][translationKey];
+        }
+        
     });
     document.dir = language === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = language;
@@ -238,6 +274,7 @@ function openPopup() {
     popup.style.display = "flex";
 }
 
+
 function closePopup() {
     popup.style.display = "none";
 }
@@ -246,6 +283,24 @@ function closePopupOnClickOutside(event) {
     if (event.target === popup) {
         popup.style.display = "none";
     }
+}
+
+function checkEmailAndPhone(email, phone) {
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    var phonePattern = /^(\+|00)?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/; // Adjust according to your phone format
+
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        showHideLoader(false);
+        return false;
+    }
+
+    if (!phonePattern.test(phone)) {
+        alert("Please enter a valid phone number.");
+        showHideLoader(false);
+        return false;
+    }
+    return true;
 }
 
 //function validateForm(event) {

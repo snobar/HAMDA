@@ -1,16 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.ComponentModel.DataAnnotations;
+﻿using HAMDA.Models.ViewModels.Base;
 
 namespace HAMDA.Models.ViewModels
 {
-    public class AdminDashboardModel
+    public class AdminDashboardModel :hFilterModel
     {
-        public int totalCount { get; set; }
-        public int pageNumber { get; set; }
-        public int pageSize { get; set; }
-        public int totalPages => (int)Math.Ceiling(totalCount / (double)pageSize);
-        public bool HasPreviousPage => pageNumber > 1;
-        public bool HasNextPage => pageNumber < totalPages;
         public int CurrentStatus { get; set; }
         public List<AdminDashboarditems> lstItems { get; set; }
     }

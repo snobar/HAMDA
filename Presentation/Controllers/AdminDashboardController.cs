@@ -33,7 +33,7 @@ namespace HAMDA.Controllers
 
             var statusEnum = status.HasValue ? (Status)status.Value : Status.Pending;
 
-            var data = await _adminDashboard.GetAllAsync((int)statusEnum, pageNumber, pageSize);
+            var data = await _adminDashboard.GetAllAsync((int)statusEnum, pageNumber, pageSize,null);
 
             data.CurrentStatus = (int)statusEnum;
 
@@ -64,7 +64,8 @@ namespace HAMDA.Controllers
                     return RedirectToAction("Details", new { Id = model.Id });
                 }
             }
-            TempData["FailedMessage1"] = "Something went wrong! Please try again.";
+            TempData["FailedMessage1"] = true;
+            TempData["FailedMessage2"] = "somethingWentWrong";
             return RedirectToAction("Index");
         }
 
@@ -72,7 +73,32 @@ namespace HAMDA.Controllers
         {
             var response = await _costumer.UpdateActiveCostumersToOld();
 
-            return RedirectToAction("Index", new { pageNumber=1, status =4});
+            return RedirectToAction("Index", new { pageNumber = 1, status = 4 });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> hSearchOnData(string hSearch, int CurrentStatus)
+        {
+            var data = await _adminDashboard.GetAllAsync(CurrentStatus, 1, int.MaxValue, hSearch);
+            data.CurrentStatus = CurrentStatus;
+
+            return View("Index",data);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateRoomSeatsNumber(int NumberOfSeats)
+        {
+            var response = await _adminDashboard.UpdateNumberOfSeats(NumberOfSeats);
+            if (!response)
+            {
+                TempData["FailedMessage1"] = true;
+                TempData["FailedMessage2"] = "somethingWentWrong";
+            }
+            return RedirectToAction("Index");
+
         }
     }
 }

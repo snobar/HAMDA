@@ -1,9 +1,33 @@
 ﻿@import "../lib/bootstrap/scss/bootstrap";
-
+@import "loader";
 
 
 
 body {
+
+    #footer {
+        background: inherit;
+        text-align: center;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        font-size: 14px;
+        color: #000; // Adjust color as needed
+
+        .info-text {
+            
+            position: absolute;
+            bottom: 0;
+            padding: 0px 5%;
+
+            strong {
+                font-weight: bold;
+                letter-spacing: 1px; // Adjust letter-spacing as needed
+                text-transform: uppercase; // Makes "coderz" always in capital letters
+            }
+        }
+    }
+
     overflow: unset !important;
 
     .nav {
@@ -42,7 +66,7 @@ body {
     }
 
     .btn {
-        width: fit-content;
+        width: fit-content !important;
     }
 
     .main-heading2 {
@@ -72,17 +96,48 @@ body {
         .tab-pane {
             overflow-x: auto;
         }
+
+        .tab-content {
+            .hSearch {
+                height: 50px;
+                border-radius: 0;
+            }
+        }
+    }
+
+    .info-text {
+        /*margin : unset;*/
     }
 
     .btn_wrapper {
-        a {
-            width: 100%;
+        &.radius-unset {
+            a {
+                border-radius: unset !important;
+            }
+
+            button {
+                border-radius: unset !important;
+            }
         }
 
-        button {
-            width: 90%;
+        a {
+            width: 100%;
+
+            &.height-fit {
+                height: fit-content;
+            }
         }
     }
+
+    .button-90 {
+        width: 90% !important;
+    }
+
+    .button-100 {
+        width: 100% !important;
+    }
+
+
 
     .AddAdmin-form {
         display: flex;
@@ -149,6 +204,10 @@ body {
 
         .nav-item {
             flex: 1;
+
+            li {
+                width: 50%;
+            }
         }
     }
 
@@ -206,6 +265,40 @@ body {
         .btn-danger {
             background-color: #dd6666;
             color: #ffffff;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        .page-container {
+            margin-top: 0;
+            padding: 40px;
+        }
+
+        .hamda-alert {
+            top: 8px;
+        }
+
+        #footer {
+
+            .info-text {
+                width: 100%;
+                left: 50%;
+                transform: translate(-50%, 0);                
+
+                strong {
+                    font-weight: bold;
+                    letter-spacing: 1px; // Adjust letter-spacing as needed
+                    text-transform: uppercase; // Makes "coderz" always in capital letters
+                }
+            }
+        }
+    }
+
+    .nav-tabs {
+        .nav-item {
+            width: 50%;
         }
     }
 }

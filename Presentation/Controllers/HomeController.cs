@@ -1,5 +1,4 @@
 using HAMDA.Core.Extentions;
-using HAMDA.Models.ViewModels;
 using HAMDA.Repository.IService;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,15 +18,16 @@ namespace HAMDA.Controllers
         {
             if (errorMessage.IsNotNullOrEmpty())
             {
-                TempData["FailedMessage1"] = errorMessage;
+                TempData["FailedMessage1"] = true;
+                TempData["FailedMessage2"] = errorMessage;
             }
 
             var costumerCount = await _costumer.GetActiveCostumersCount();
 
-            return View(new RegisterCostumerModel { CostumerCount = costumerCount });
+            return View(new HAMDA.Models.ViewModels.RegisterCostumerModel { CostumerCount = costumerCount });
         }
 
-        public IActionResult ThankYouPage(ThankYouModel model)
+        public IActionResult ThankYouPage(HAMDA.Models.ViewModels.ThankYouModel model)
         {
             return View(model);
         }
@@ -39,10 +39,17 @@ namespace HAMDA.Controllers
             if (ModelState.IsValid)
             {
                 var response = await _costumer.AddCostumer(Model);
-                if (response)
+                if (response.response && response.isValid)
                 {
-                    return RedirectToAction("ThankYouPage", new ThankYouModel { UserName = Model.Username });
+                    return RedirectToAction("ThankYouPage", new HAMDA.Models.ViewModels.ThankYouModel { UserName = Model.Username });
                 }
+
+                if (!response.isValid)
+                {
+                    TempData["FailedMessage1"] = true;
+                    TempData["FailedMessage2"] = "waitForApproval";
+                }
+
             }
 
             var costumerCount = await _costumer.GetActiveCostumersCount();
